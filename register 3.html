@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rausan Mawla Register</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e63946;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #d62839;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e63946;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #errorMsg, #successMsg {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        #errorMsg {
+            color: #d62828;
+        }
+
+        #successMsg {
+            color: #2a9d8f;
+        }
+
+        @media (max-width: 600px) {
+            form, table {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Register</h1>
+
+    <form id="registerForm">
+        <label for="nama">Nama Lengkap</label>
+        <input required type="text" id="nama" placeholder="Nama Lengkap">
+
+        <label for="email">Email</label>
+        <input required type="email" id="email" placeholder="Email">
+
+        <label for="password">Password</label>
+        <input required type="password" id="password" placeholder="Password (min 6 karakter)">
+
+        <label for="confirmPassword">Konfirmasi Password</label>
+        <input required type="password" id="confirmPassword" placeholder="Konfirmasi Password">
+
+        <label for="nomor">Nomor HP</label>
+        <input required type="number" id="nomor" placeholder="Nomor HP">
+
+        <label for="tanggal">Tanggal Lahir</label>
+        <input required type="date" id="tanggal">
+
+        <label for="gender">Gender</label>
+        <select required id="gender">
+            <option value="" disabled selected>Pilih Gender</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+            <option value="Helicopter">Helicopter</option>
+        </select>
+
+        <button type="submit">Buat Akun</button>
+    </form>
+
+    <div id="errorMsg"></div>
+    <div id="successMsg"></div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Nomor HP</th>
+                <th>Tanggal Lahir</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan ditambahkan di sini -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById("nama").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const nomor = document.getElementById("nomor").value;
+            const tanggal = document.getElementById("tanggal").value;
+            const gender = document.getElementById("gender").value;
+
+            const errorMsg = document.getElementById("errorMsg");
+            const successMsg = document.getElementById("successMsg");
+
+            errorMsg.textContent = "";
+            successMsg.textContent = "";
+
+            if (password.length < 6) {
+                errorMsg.textContent = "Password minimal 6 karakter.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMsg.textContent = "Konfirmasi password tidak cocok.";
+                return;
+            }
+
+            const table = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            newRow.insertCell(0).textContent = nama;
+            newRow.insertCell(1).textContent = email;
+            newRow.insertCell(2).textContent = nomor;
+            newRow.insertCell(3).textContent = tanggal;
+            newRow.insertCell(4).textContent = gender;
+
+            document.getElementById("registerForm").reset();
+            successMsg.textContent = "Registrasi berhasil!";
+        });
+    </script>
+</body>
+</html>
