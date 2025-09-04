@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rausan Mawla Register</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <h1>Register</h1>
+
+    <form id="registerForm">
+        <label for="nama">Nama Lengkap</label>
+        <input required type="text" id="nama" placeholder="Nama Lengkap">
+
+        <label for="email">Email</label>
+        <input required type="email" id="email" placeholder="Email">
+
+        <label for="password">Password</label>
+        <input required type="password" id="password" placeholder="Password (min 6 karakter)">
+
+        <label for="confirmPassword">Konfirmasi Password</label>
+        <input required type="password" id="confirmPassword" placeholder="Konfirmasi Password">
+
+        <label for="nomor">Nomor HP</label>
+        <input required type="number" id="nomor" placeholder="Nomor HP">
+
+        <label for="tanggal">Tanggal Lahir</label>
+        <input required type="date" id="tanggal">
+
+        <label for="gender">Gender</label>
+        <select required id="gender">
+            <option value="" disabled selected>Pilih Gender</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+            <option value="Helicopter">Helicopter</option>
+        </select>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="setuju" required>
+            <label for="setuju">Anda menyetujui Syarat & Ketentuan</label>
+        </div>
+
+        <button type="submit">Buat Akun</button>
+        <p><a href="Login.html">Login Mas</a></p>
+    </form>
+
+    <div id="errorMsg"></div>
+    <div id="successMsg"></div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Nomor HP</th>
+                <th>Tanggal Lahir</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan ditambahkan di sini -->
+        </tbody>
+    </table>
+
+    <script src="Script.js"></script>
+</body>
+</html>
